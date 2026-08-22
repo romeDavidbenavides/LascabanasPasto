@@ -91,54 +91,16 @@ if (typeof gsap !== 'undefined') {
     });
 }
 
-// Carrusel continuo e infinito, con control manual por rueda o arrastre.
+// Carrusel manual: se controla con rueda, touch o arrastre.
 const carrusel = document.getElementById('carruselContenedor');
-const grupoCarrusel = document.getElementById('grupoCarrusel');
 
-if (carrusel && grupoCarrusel) {
-    // Se duplica el contenido una vez para enlazar el final con el inicio.
-    Array.from(grupoCarrusel.children).forEach((card) => {
-        const copia = card.cloneNode(true);
-        copia.setAttribute('aria-hidden', 'true');
-        grupoCarrusel.appendChild(copia);
-    });
-
-    let pausado = false;
+if (carrusel) {
     let arrastrando = false;
     let inicioX = 0;
     let inicioScroll = 0;
-    let temporizadorReanudar;
-
-    const anchoDeVuelta = () => grupoCarrusel.scrollWidth / 2;
-    const normalizarPosicion = () => {
-        const vuelta = anchoDeVuelta();
-        if (vuelta <= 0) return;
-        if (carrusel.scrollLeft >= vuelta) carrusel.scrollLeft -= vuelta;
-        if (carrusel.scrollLeft < 0) carrusel.scrollLeft += vuelta;
-    };
-
-    const pausarTemporalmente = () => {
-        pausado = true;
-        clearTimeout(temporizadorReanudar);
-        temporizadorReanudar = setTimeout(() => { pausado = false; }, 1200);
-    };
-
-    const moverCarrusel = () => {
-        if (!pausado && !arrastrando) {
-            carrusel.scrollLeft += 0.65;
-            normalizarPosicion();
-        }
-        requestAnimationFrame(moverCarrusel);
-    };
-    requestAnimationFrame(moverCarrusel);
-
-    // La rueda conserva el control manual y reanuda el movimiento después de un momento.
-    carrusel.addEventListener('wheel', pausarTemporalmente, { passive: true });
 
     carrusel.addEventListener('pointerdown', (evento) => {
         arrastrando = true;
-        pausado = true;
-        clearTimeout(temporizadorReanudar);
         inicioX = evento.clientX;
         inicioScroll = carrusel.scrollLeft;
         carrusel.setPointerCapture(evento.pointerId);
@@ -147,17 +109,11 @@ if (carrusel && grupoCarrusel) {
     carrusel.addEventListener('pointermove', (evento) => {
         if (!arrastrando) return;
         carrusel.scrollLeft = inicioScroll - (evento.clientX - inicioX);
-        normalizarPosicion();
     });
 
-    const terminarArrastre = () => {
-        arrastrando = false;
-        pausarTemporalmente();
-    };
+    const terminarArrastre = () => { arrastrando = false; };
     carrusel.addEventListener('pointerup', terminarArrastre);
     carrusel.addEventListener('pointercancel', terminarArrastre);
-    carrusel.addEventListener('touchstart', pausarTemporalmente, { passive: true });
-    carrusel.addEventListener('touchend', pausarTemporalmente, { passive: true });
 }
 // Efecto sutil en los botones destacados.
 document.querySelectorAll('.btn-magnetic').forEach((boton) => {
