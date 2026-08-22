@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motel Las Cabañas - Inicio</title>
+    <link rel="stylesheet" href="CSS/inicio.css">
+    <!-- Librerías de Animación GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-container">
+    <a href="index.html" class="logo">
+      <img src="imagenes/logo sin fondo.png" alt="Las Cabañas">
+    </a>
+    
+    <nav class="nav">
+      <a href="index.html">Inicio</a>
+      <a href="HTML/catalogo.html">Catálogo</a>
+      <a href="HTML/contactanos.html">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<!-- 🎬 HERO CON ZOOM ORIGINAL -->
+<section class="hero">
+    <img src="imagenes/fachada_animada.png" class="hero-image" alt="Fachada Las Cabañas">
+    <div class="overlay-hero"></div>
+    <div class="hero-content">
+        <a class="btn-hero btn-magnetic" href="HTML/catalogo.html">Ver habitaciones</a>
+    </div>
+</section>
+
+<!-- 🏛️ NUEVA SECCIÓN DE TÍTULOS CINEMÁTICOS CON DESPLAZAMIENTO LATERAL -->
+<section class="branding-intro">
+  <div class="brand-title-wrap">
+    <h1 class="brand-main">
+      <span class="slide-left">Las Cabañas</span>
+      <span class="slide-right">Motel</span>
+    </h1>
+    <p class="brand-sub">El placer de la distinción</p>
+  </div>
+</section>
+
+<!-- 🎠 CARRUSEL DE HABITACIONES AUTOMATIZADO INFINITO -->
+<section class="carrusel-seccion">
+  <h2 class="titulo-carrusel">Habitaciones destacadas</h2>
+  <div class="carrusel-contenedor" id="carruselContenedor">
+    <div class="grupo-carrusel" id="grupoCarrusel">
+      
+      <div class="card-carrusel">
+        <div class="card-img-wrapper"><img src="imagenes/CA17_1.png" alt="Cabaña Finca 17"></div>
+        <div class="card-body">
+          <h3>Cabaña Finca #17</h3>
+          <p class="precio">$120.000 / 8 horas</p>
+          <a href="https://wa.me/573014260352?text=Hola%20quiero%20reservar%20la%20Cabaña%20Finca#17" target="_blank" class="btn-reservar btn-magnetic">Reservar</a>
+        </div>
+      </div>
+
+      <div class="card-carrusel">
+        <div class="card-img-wrapper"><img src="imagenes/CA21_1.jpeg" alt="Cuarto Rojo 21"></div>
+        <div class="card-body">
+          <h3>Cuarto Rojo #21</h3>
+          <p class="precio">$140.000 / 8 horas</p>
+          <a href="https://wa.me/573014260352?text=Hola%20quiero%20reservar%20la%20Cabaña%20ROJ#21" target="_blank" class="btn-reservar btn-magnetic">Reservar</a>
+        </div>
+      </div>
+
+      <div class="card-carrusel">
+        <div class="card-img-wrapper"><img src="imagenes/CA22_1.jpeg" alt="Presidencial 22"></div>
+        <div class="card-body">
+          <h3>Presidencial #22</h3>
+          <p class="precio">$140.000 / 8 horas</p>
+          <a href="https://wa.me/573014260352?text=Hola%20quiero%20reservar%20la%20Cabaña%20PRESIDENCIAL#22" target="_blank" class="btn-reservar btn-magnetic">Reservar</a>
+        </div>
+      </div>
+
+      <div class="card-carrusel">
+        <div class="card-img-wrapper"><img src="imagenes/CA19_1.png" alt="Tropical Party 19"></div>
+        <div class="card-body">
+          <h3>Tropical Party #19</h3>
+          <p class="precio">$350.000 / 8 horas</p>
+          <a href="https://wa.me/573014260352?text=Hola%20quiero%20reservar%20la%20Cabaña%20Tropical#19" target="_blank" class="btn-reservar btn-magnetic">Reservar</a>
+        </div>
+      </div>
+
+      <div class="card-carrusel">
+        <div class="card-img-wrapper"><img src="imagenes/CA27_1.png" alt="Alaska"></div>
+        <div class="card-body">
+          <h3>Alaska</h3>
+          <p class="precio">$420.000 / 8 horas</p>
+          <a href="https://wa.me/573014260352?text=Hola%20quiero%20reservar%20la%20Cabaña%20Alaska" target="_blank" class="btn-reservar btn-magnetic">Reservar</a>
+        </div>
+      </div>
+
+      <div class="card-carrusel">
+        <div class="card-img-wrapper"><img src="imagenes/CA16_1.jpeg" alt="Deluxe 16"></div>
+        <div class="card-body">
+          <h3>Cabaña deluxe #16</h3>
+          <p class="precio">$140.000 / 8 horas</p>
+          <a href="https://wa.me/573014260352?text=Hola%20quiero%20reservar%20la%20Cabaña%20Deluxe" target="_blank" class="btn-reservar btn-magnetic">Reservar</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 🛏️ SECCIONES DETALLADAS FLUIDAS (Clase titulo-caida añadida) -->
+<section class="room-section section-cama">
+    <div class="room-image-container img-cama premium-gallery">
+        <img src="imagenes/CA22_1.jpeg" class="room-image" alt="Cabaña Presidencial">
+        <img src="imagenes/CA5_1.jpeg" class="room-image" alt="Habitación Premium">
+    </div>
+    <div class="room-info info-cama">
+        <h2 class="titulo-caida">Habitaciones
+
+          
+           Premium</h2>
+        <p>Espacios diseñados al detalle para brindar comodidad absoluta, elegancia sofisticada y una experiencia íntima e inolvidable.</p>
+    </div>
+</section>
+
+<section class="room-section reverse section-jacuzzi">
+    <div class="room-image-container img-jacuzzi">
+        <img src="imagenes/jacuzzi1.png" class="room-image" alt="Zona Jacuzzi">
+    </div>
+    <div class="room-info info-jacuzzi">
+        <h2 class="titulo-caida">Zona Jacuzzi</h2>
+        <p>Desconéctate del mundo exterior y sumérgete en momentos especiales dentro de nuestros ambientes totalmente exclusivos.</p>
+    </div>
+</section>
+
+<!-- ✨ SECCIÓN: DECORACIONES PERSONALIZADAS -->
+<section class="room-section section-decoraciones">
+    <div class="room-image-container img-decoraciones">
+        <img src="imagenes/decoraciones.jpg" class="room-image" alt="Decoraciones Especiales">
+    </div>
+    <div class="room-info info-decoraciones">
+        <h2 class="titulo-caida">Decoraciones Personalizadas</h2>
+        <p>Sorprende a tu pareja y celebra aniversarios, cumpleaños o noches especiales con arreglos románticos diseñados a tu medida.</p>
+    </div>
+</section>
+
+<!-- 🍔 SECCIÓN: COMIDAS RÁPIDAS -->
+<section class="room-section reverse section-comida">
+    <div class="comida-doble-container img-comida">
+        <img src="imagenes/comida1.png" class="comida-img c-uno" alt="Menú Cabañas 1">
+        <img src="imagenes/comida2.png" class="comida-img c-dos" alt="Menú Cabañas 2">
+    </div>
+    <div class="room-info info-comida">
+        <h2 class="titulo-caida">Servicio a la Habitación</h2>
+        <p>Disfruta de nuestro delicioso y variado menú sin salir de tu suite. Servicio a la habitación de jueves a sábado a partir de las 7 pm.</p>
+    </div>
+</section>
+
+<!-- 💋 SECCIÓN: JUGUETES Y ACCESORIOS -->
+<section class="room-section section-juguetes">
+    <div class="room-image-container img-juguetes">
+        <img src="imagenes/juguetes.jpeg" class="room-image" alt="Juguetes y Accesorios Boutique">
+    </div>
+    <div class="room-info info-juguetes">
+        <h2 class="titulo-caida">Juguetes y Accesorios</h2>
+        <p>Lleva la diversión al siguiente nivel. Contamos con una línea exclusiva de accesorios boutique directo en tu habitación para encender la pasión.</p>
+    </div>
+</section>
+
+<!-- 🔒 SECCIÓN BENEFICIOS OPTIMIZADOS (Emojis integrados en el HTML) -->
+<section class="beneficios-seccion">
+  <h2>¿Por qué elegirnos?</h2>
+  <div class="beneficios-grid">
+    <div class="beneficio-item b-privacidad"><span>🔒</span>Privacidad total</div>
+    <div class="beneficio-item b-confort"><span>🛏️</span>Máximo confort</div>
+    <div class="beneficio-item b-parqueadero"><span>🚗</span>Parqueadero privado</div>
+    <div class="beneficio-item b-vigilancia"><span>🎥</span>Vigilancia 24/7</div>
+    <div class="beneficio-item b-aseo"><span>🧼</span>Aseo impecable</div>
+    <div class="beneficio-item b-atencion"><span>⏰</span>Atención 24 horas</div>
+    <div class="beneficio-item b-servicio"><span>🍔</span>Servicio al cuarto</div>
+    <div class="beneficio-item b-comidas"><span>🍷</span>Comidas y bebidas</div>
+    <div class="beneficio-item b-tematicas"><span>🔥</span>Ambientes temáticos</div>
+    <div class="beneficio-item b-juguetes"><span>💋</span>Juguetes boutique</div>
+    <div class="beneficio-item b-romantico"><span>🎶</span>Ambiente romántico</div>
+    <div class="beneficio-item b-clima"><span>❄️</span>Climatización</div>
+  </div>
+</section>
+
+<!-- 📍 UBICACIÓN / MAPA -->
+<section class="ubicacion">
+  <h2>¿Cómo llegar?</h2>
+  <div class="mapa-container">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1696.7804338742324!2d-77.29035357299318!3d1.1740729271840777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e292dbc82cb2413%3A0xbdaa071cfdf3f91!2sLas%20Caba%C3%B1as%20Motel!5e0!3m2!1ses!2sco!4v1774651269273!5m2!1ses!2sco"
+      allowfullscreen=""
+      loading="lazy">
+    </iframe>
+  </div>
+  <a href="https://maps.app.goo.gl/ezse5tHUEGnKBZUR7" target="_blank" class="btn-mapa btn-magnetic">
+    📍 Abrir en Google Maps
+  </a>
+</section>
+
+<!-- 🌌 FOOTER PREMIUM INTEGRADO -->
+<footer class="footer-premium">
+  <div class="footer-container">
+    
+    <div class="footer-video-column">
+      <div class="mini-video-wrap">
+        <video muted loop playsinline autoplay class="footer-video">
+          <source src="videos/video_publicidad.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay-glow"></div>
+      </div>
+    </div>
+
+    <div class="footer-info-column">
+      <img src="imagenes/logo sin fondo.png" alt="Las Cabañas Logo" class="footer-logo">
+      <h3>Tu próxima experiencia comienza aquí</h3>
+      <p class="footer-dir">📍 Pasto, Nariño, Colombia</p>
+      
+      <div class="footer-actions">
+        <a href="https://wa.me/573014260352" target="_blank" class="btn-footer-wa btn-magnetic">
+          💬 Reserva por WhatsApp
+        </a>
+      </div>
+
+      <div class="footer-redes">
+        <a href="https://www.instagram.com/lascabanaspasto?igsh=MXFzbmh1eWhrZXU4dA==" target="_blank">Instagram</a>
+        <a href="https://www.facebook.com/share/1DEy8FcZRx/" target="_blank">Facebook</a>
+        <a href="HTML/contactanos.html">Contacto</a>
+      </div>
+      
+      <p class="copy">© 2026 Motel Las Cabañas. Todos los derechos reservados.</p>
+    </div>
+
+  </div>
+</footer>
+
+<script src="JS/inicio.js"></script>
+</body>
+</html>

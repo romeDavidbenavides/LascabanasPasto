@@ -1,0 +1,250 @@
+:root {
+  --vino: #b8001c;
+  --vino-oscuro: #8a0015;
+  --texto: #3d3d3d;
+  --rosa-suave: #f8f4f5;
+  --rosa-borde: #d8a7ae;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Poppins', Arial, sans-serif;
+  color: var(--texto);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: linear-gradient(90deg, #d8a7ae 0%, #f8f4f5 10%, #ffffff 25%, #ffffff 75%, #f8f4f5 90%, #d8a7ae 100%);
+}
+
+#videoFondo {
+  position: fixed;
+  inset: 0;
+  width: 80%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(184, 0, 28, 0.28) 0%, rgba(216, 167, 174, 0.16) 14%, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0) 70%, rgba(216, 167, 174, 0.16) 86%, rgba(184, 0, 28, 0.28) 100%);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: linear-gradient(90deg, rgba(216, 167, 174, 0.72) 0%, rgba(248, 244, 245, 0.78) 10%, rgba(255, 255, 255, 0.74) 25%, rgba(255, 255, 255, 0.74) 75%, rgba(248, 244, 245, 0.78) 90%, rgba(216, 167, 174, 0.72) 100%);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(184, 0, 28, 0.12);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.04);
+}
+
+.header-container {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.logo img {
+  height: 52px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav a {
+  color: var(--texto);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+}
+
+.nav a:hover {
+  color: var(--vino);
+}
+
+.contenedor {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: min(380px, calc(100% - 40px));
+  margin-top: 140px;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(184, 0, 28, 0.1);
+}
+
+.formulario {
+  width: 100%;
+}
+
+.formulario h2 {
+  margin: 0 0 18px;
+  color: var(--texto);
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #e2dadd;
+  border-radius: 10px;
+  font: inherit;
+  color: var(--texto);
+  background: white;
+  outline: none;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--vino);
+  box-shadow: 0 0 0 3px rgba(184, 0, 28, 0.1);
+}
+
+textarea {
+  height: 110px;
+  resize: vertical;
+}
+
+button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: var(--vino);
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background: var(--vino-oscuro);
+  transform: translateY(-2px);
+}
+
+.redes {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+}
+
+.redes a {
+  color: var(--vino);
+  text-decoration: none;
+  font-size: 34px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.redes a:hover {
+  color: var(--vino-oscuro);
+  transform: translateY(-3px);
+}
+@media (max-width: 768px) {
+  .header-container {
+    padding: 12px 16px;
+  }
+
+  .nav {
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .contenedor {
+    width: min(420px, calc(100% - 32px));
+    margin-top: 128px;
+  }
+}
+
+@media (max-width: 600px) {
+  #videoFondo {
+    width: 100%;
+  }
+
+  .header-container {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 14px;
+  }
+
+  .logo img {
+    height: 46px;
+  }
+
+  .nav {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .nav a {
+    font-size: 0.9rem;
+  }
+
+  .contenedor {
+    width: calc(100% - 24px);
+    margin-top: 150px;
+    padding: 22px;
+    border-radius: 16px;
+  }
+
+  .formulario h2 {
+    font-size: 1.6rem;
+  }
+
+  input, textarea, button {
+    font-size: 16px;
+  }
+
+  .redes {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav {
+    gap: 9px;
+  }
+
+  .nav a {
+    font-size: 0.82rem;
+  }
+
+  .contenedor {
+    margin-top: 145px;
+    padding: 18px;
+  }
+}

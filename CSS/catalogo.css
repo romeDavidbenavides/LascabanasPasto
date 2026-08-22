@@ -1,0 +1,548 @@
+/* ==========================
+   RESET
+========================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  background:
+  linear-gradient(
+      90deg,
+      #d8a7ae 0%,
+      #f8f4f5 10%,
+      #ffffff 25%,
+      #ffffff 75%,
+      #f8f4f5 90%,
+      #d8a7ae 100%
+  );
+  font-family:'Poppins',sans-serif;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.header{
+  width:100%;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background: linear-gradient(90deg, rgba(216, 167, 174, 0.72) 0%, rgba(248, 244, 245, 0.78) 10%, rgba(255, 255, 255, 0.74) 25%, rgba(255, 255, 255, 0.74) 75%, rgba(248, 244, 245, 0.78) 90%, rgba(216, 167, 174, 0.72) 100%);
+  backdrop-filter:blur(15px);
+  -webkit-backdrop-filter:blur(15px);
+  border-bottom:
+  1px solid rgba(184,0,28,0.12);
+  box-shadow:
+  0 5px 25px rgba(0,0,0,.04);
+}
+
+.header-container{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+}
+
+/* ==========================
+   LOGO
+========================== */
+
+.logo img{
+  height:52px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.logo img:hover{
+  transform:scale(1.05);
+}
+
+/* ==========================
+   NAV
+========================== */
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.nav a{
+  color:#3d3d3d;
+  text-decoration:none;
+  font-weight:600;
+  letter-spacing:.5px;
+  transition:.3s;
+}
+
+.nav a:hover{
+  color:#b8001c;
+}
+
+/* ==========================
+   CATÁLOGO
+========================== */
+
+.catalogo{
+  width:90%;
+  max-width:950px;
+  margin:40px auto;
+  overflow:visible;
+}
+
+/* ==========================
+   CONTENEDOR DEL BUSCADOR
+========================== */
+
+.buscador-contenedor {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#buscador{
+  flex: 1;
+  padding: 15px;
+  border-radius: 15px;
+  border: 1px solid #ddd;
+  background: white;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,.04);
+}
+
+#buscador:focus{
+  border-color:#b8001c;
+}
+
+#btn-buscar {
+  padding: 0 25px;
+  border: none;
+  border-radius: 15px;
+  background: #b8001c;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: .3s;
+  box-shadow: 0 5px 15px rgba(184,0,28,.15);
+}
+
+#btn-buscar:hover {
+  background: #8a0015;
+  transform: translateY(-2px);
+}
+
+/* ==========================
+   CATEGORÍAS
+========================== */
+
+.categorias{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:25px;
+}
+
+.categorias button{
+  padding:12px 18px;
+  border:none;
+  border-radius:50px;
+  background:#b8001c;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.categorias button:hover{
+  background:#8a0015;
+  transform:translateY(-3px);
+  box-shadow:
+  0 10px 25px rgba(184,0,28,.25);
+}
+
+/* ==========================
+   RESULTADOS
+========================== */
+
+.resultados{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  overflow:visible;
+}
+
+/* ==========================
+   CARD
+========================== */
+
+.card{
+  background:white;
+  border-radius:20px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  transition:.4s ease-in-out;
+  height:350px;
+  box-shadow:
+  0 8px 25px rgba(0,0,0,.08);
+}
+
+.card:hover{
+  transform:
+  scale(1.07)
+  translateY(-10px);
+  z-index:10;
+  box-shadow:
+  0 15px 35px rgba(0,0,0,.20);
+}
+
+/* ==========================
+   INDICADOR NUMÉRICO
+========================== */
+
+.badge-numero {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: rgba(184, 0, 28, 0.9);
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  z-index: 15;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  pointer-events: none;
+}
+
+/* ==========================
+   PREVIEW E IMÁGENES INTERNAS
+========================== */
+
+.card .preview, .card video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  position:absolute;
+  top:0;
+  left:0;
+  transition:.3s;
+  border-radius:20px; /* Asegura el redondeado interno */
+}
+
+.card video{
+  opacity:0;
+}
+
+.card:hover video{
+  opacity:1;
+}
+
+.card:hover .preview{
+  opacity:0;
+}
+
+/* ==========================
+   OVERLAY (Información desplegable al hacer hover)
+========================== */
+
+.overlay{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  background: transparent;
+  padding:15px;
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:flex-start;
+  opacity:0;
+  transition:.3s ease-in-out;
+  border-radius:0 0 20px 20px;
+  z-index:20;
+}
+
+.card:hover .overlay{
+  opacity:1;
+}
+
+.overlay h3{
+  color:white;
+  font-size:16px;
+  margin-bottom:5px;
+  text-shadow:0 2px 5px rgba(0,0,0,.8);
+}
+
+.overlay p{
+  color:#ddd;
+  font-size:13px;
+  margin-bottom:10px;
+  line-height:1.4;
+  text-align:left;
+}
+
+.overlay a{
+  background:#b8001c;
+  padding:8px 12px;
+  border-radius:8px;
+  color:white;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:600;
+  transition:.3s;
+}
+
+.overlay a:hover{
+  background:#8a0015;
+}
+
+/* ==========================
+   INFO DESPLEGABLE
+========================== */
+
+.info{
+  max-height:0;
+  overflow:hidden;
+  background:#111;
+  color:white;
+  font-size:14px;
+  padding:0 10px;
+  transition:.4s;
+}
+
+.card.activa .info{
+  max-height:200px;
+  padding:10px;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:900px){
+  .resultados{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:600px){
+  /* Cuadrícula de 2 columnas */
+  .resultados{
+    grid-template-columns:repeat(2,1fr); 
+    gap: 12px;
+  }
+
+  /* 📱 Forzar redondeado estricto en tarjetas en móviles */
+  .card {
+    border-radius: 20px !important;
+  }
+
+  /* 📱 SUPER ZOOM RESPONSIVE TOTAL SIN RECORTE */
+  .card:hover {
+    transform: scale(1.35); 
+    z-index: 9999; 
+    overflow: visible; 
+    border-radius: 20px !important;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.5);
+  }
+
+  /* Asegurar que la información se despliegue adaptándose perfectamente al tamaño reducido */
+  .overlay {
+    padding: 10px;
+  }
+  
+  .overlay h3 {
+    font-size: 13px;
+  }
+  
+  .overlay p {
+    font-size: 10px;
+    margin-bottom: 6px;
+  }
+
+  .overlay a {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+
+  /* 🗂️ DISEÑO RESPONSIVE CORREGIDO PARA BOTONES DE CATEGORÍAS */
+  .categorias {
+    display: flex;
+    justify-content: center; /* Centra los botones en la pantalla */
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 25px;
+    width: 100%;
+  }
+
+  .categorias button {
+    padding: 8px 12px; /* Disminuye notablemente el tamaño */
+    font-size: 12px;   /* Letra más pequeña y balanceada */
+    border-radius: 20px;
+  }
+
+  /* Ajustes del Header y Buscador */
+  .nav{
+    gap:10px;
+  }
+
+  .nav a{
+    font-size:14px;
+  }
+
+  .header-container{
+    flex-direction:column;
+    gap:15px;
+  }
+  
+  .buscador-contenedor {
+    gap: 8px;
+  }
+  
+  #buscador {
+    padding: 12px;
+    font-size: 14px;
+  }
+  
+  #btn-buscar {
+    padding: 0 15px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+}
+/* Botón de fotos y visor de galería. */
+.btn-galeria {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  border: 0;
+  background: rgba(184, 0, 28, 0.9);
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  width: 40px;
+  height: 36px;
+  border-radius: 10px;
+  z-index: 25;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+.galeria-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 10000;
+}
+
+.galeria-contenido {
+  position: relative;
+  width: min(900px, 100%);
+  max-height: 90vh;
+}
+
+.galeria-imagen {
+  width: 100%;
+  max-height: 80vh;
+  display: block;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+.galeria-cerrar,
+.galeria-anterior,
+.galeria-siguiente {
+  position: absolute;
+  border: 0;
+  color: white;
+  background: rgba(184, 0, 28, 0.92);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.galeria-cerrar {
+  top: -12px;
+  right: -12px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 22px;
+}
+
+.galeria-anterior,
+.galeria-siguiente {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 52px;
+  font-size: 28px;
+}
+
+.galeria-anterior { left: 12px; border-radius: 10px; }
+.galeria-siguiente { right: 12px; border-radius: 10px; }
+.galeria-contador {
+  margin-top: 10px;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+}
+/* Las cabañas sin foto aún usan su video como portada. */
+.card video.sin-portada {
+  opacity: 1;
+}
+.btn-galeria svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+  vertical-align: middle;
+}
+.sin-resultados {
+  grid-column: 1 / -1;
+  padding: 36px 24px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(184, 0, 28, 0.12);
+  border-radius: 20px;
+  color: #3d3d3d;
+}
+
+.sin-resultados h3 {
+  margin: 0 0 8px;
+  color: #b8001c;
+}
+
+.sin-resultados p {
+  margin: 0;
+}
+
+.sugerencias {
+  margin-top: 18px !important;
+}
+
+.sugerencias span {
+  display: inline-block;
+  margin: 5px 4px 0;
+  padding: 6px 10px;
+  border-radius: 50px;
+  background: #f8f4f5;
+  color: #b8001c;
+  font-weight: 600;
+}

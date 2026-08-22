@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Cabañas</title>
+    <link rel="stylesheet" href="../CSS/catalogo.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-container">
+    <a href="../index.html" class="logo">
+      <img src="../imagenes/logo sin fondo.png" alt="Las Cabañas">
+    </a>
+    
+    <nav class="nav">
+      <a href="../index.html">Inicio</a>
+      <a href="../HTML/catalogo.html">Catálogo</a>
+      <a href="../HTML/contactanos.html">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<div class="catalogo">
+
+  <!-- 🔍 Buscador Integrado con Botón -->
+  <div class="buscador-contenedor">
+    <input type="text" id="buscador" placeholder="Buscar cabaña por número o nombre...">
+    <button id="btn-buscar" onclick="ejecutarBusqueda()">Buscar</button>
+  </div>
+
+  <!-- 🗂️ Categorías -->
+  <div class="categorias">
+    <button onclick="filtrar('sencillas')">💰 Sencillas</button>
+    <button onclick="filtrar('romanticas')">❤️ Románticas</button>
+    <button onclick="filtrar('jacuzzi')">🛁 Jacuzzi</button>
+    <button onclick="filtrar('grupales')">👥 Grupales</button>
+    <button onclick="filtrar('premium')">⭐ Premium</button>
+    <button onclick="filtrar('deluxe')">✨ Deluxe</button>
+    <button onclick="filtrar('discapacitados')">♿ Discapacitados</button>
+    <button onclick="filtrar('bdsm')">🔗 BDSM</button>
+    <button onclick="mostrarCabanas(cabanas)">🏠 Todas</button>
+  </div>
+
+  <!-- 🏡 Resultados -->
+  <div id="resultados" class="resultados"></div>
+
+</div>
+    
+<script src="../JS/catalogo.js"></script>
+</body>
+</html>
