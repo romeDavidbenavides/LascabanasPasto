@@ -257,11 +257,11 @@ const fotosPorCabana = {
 };
 
 const videosPorCabana = {
-  1: '../videos/CA1.mov', 3: '../videos/CA3.mov', 4: '../videos/CA4.mov',
-  5: '../videos/CA5.mp4', 6: '../videos/CA6.mov', 7: '../videos/CA7.mov',
+  1: '../videos/CA1.mp4', 3: '../videos/CA3.mp4', 4: '../videos/CA4.mp4',
+  5: '../videos/CA5.mp4', 6: '../videos/CA6.mp4', 7: '../videos/CA7.mp4',
   8: '../videos/CA8.mp4', 9: '../videos/CA9.mp4', 10: '../videos/CA10.mp4',
-  11: '../videos/CA11.mov', 12: '../videos/CA12.mp4', 14: '../videos/CA14.mp4', 16: '../videos/CA16.mp4',
-  15: '../videos/CA15.mov', 17: '../videos/CA17.mp4', 18: '../videos/CA18.mov',
+  11: '../videos/CA11.mp4', 12: '../videos/CA12.mp4', 14: '../videos/CA14.mp4', 16: '../videos/CA16.mp4',
+  15: '../videos/CA15.mp4', 17: '../videos/CA17.mp4', 18: '../videos/CA18.mp4',
   19: '../videos/CA19.mp4', 20: '../videos/CA20.mp4', 21: '../videos/CA21.mp4', 22: '../videos/CA22.mp4'
 };
 // Cada card conserva su número aunque se eliminen o agreguen cabañas.
@@ -295,9 +295,9 @@ Object.assign(fotosPorCabana, {
 });
 
 Object.assign(videosPorCabana, {
-  23: '../videos/CA23.mov', 24: '../videos/CA24.mov', 25: '../videos/CA25.mov',
-  26: '../videos/CA26.mov', 27: '../videos/CA27.mp4', 28: '../videos/CA28.mov',
-  29: '../videos/CA29.mov'
+  23: '../videos/CA23.mp4', 24: '../videos/CA24.mp4', 25: '../videos/CA25.mp4',
+  26: '../videos/CA26.mp4', 27: '../videos/CA27.mp4', 28: '../videos/CA28.mp4',
+  29: '../videos/CA29.mp4'
 });
 // Clasificación múltiple: una cabaña puede aparecer en varios filtros.
 const categoriasPorCabana = {
