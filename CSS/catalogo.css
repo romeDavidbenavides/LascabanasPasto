@@ -393,6 +393,13 @@ body{
     font-size: 10px;
   }
 
+  /* Sube el botón de fotos para que no choque con "Continuar en WhatsApp". */
+  .btn-galeria {
+    bottom: 50px;
+    width: 34px;
+    height: 30px;
+  }
+
   /* 🗂️ DISEÑO RESPONSIVE CORREGIDO PARA BOTONES DE CATEGORÍAS */
   .categorias {
     display: flex;
