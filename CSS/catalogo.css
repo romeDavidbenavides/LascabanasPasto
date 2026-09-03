@@ -244,11 +244,13 @@ body{
   opacity:0;
 }
 
-.card:hover video{
+.card:hover video,
+.card.reproduciendo video{
   opacity:1;
 }
 
-.card:hover .preview{
+.card:hover .preview,
+.card.reproduciendo .preview{
   opacity:0;
 }
 
@@ -306,6 +308,20 @@ body{
 
 .overlay a:hover{
   background:#8a0015;
+}
+
+/* Botón de contacto por WhatsApp dentro de cada tarjeta. */
+.overlay a.btn-wa{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:#25d366;
+  color:#fff;
+  box-shadow:0 4px 12px rgba(37,211,102,.35);
+}
+
+.overlay a.btn-wa:hover{
+  background:#1ebe5d;
 }
 
 /* ==========================
@@ -545,4 +561,14 @@ body{
   background: #f8f4f5;
   color: #b8001c;
   font-weight: 600;
+}
+
+/* Contador de visitas: discreto, al pie del catálogo. */
+.contador-visitas {
+  margin: 26px 0 4px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .3px;
+  color: #a08b8f;
 }

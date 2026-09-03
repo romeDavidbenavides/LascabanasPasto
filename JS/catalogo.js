@@ -1,3 +1,15 @@
+// Datos de contacto y enlaces usados para las reservas por WhatsApp.
+const NUMERO_WHATSAPP = "573014260352";
+const SITIO_WEB = "https://lascabanaspasto.com.co";
+
+// Arma el enlace de WhatsApp con el número de la cabaña y la dirección
+// de /r/<n>.html, que es la que aporta la foto de vista previa al chat.
+function enlaceReservaWhatsApp(cabana) {
+  const paginaConFoto = `${SITIO_WEB}/r/${cabana.id}.html`;
+  const mensaje = `Hola, quiero reservar la ${cabana.id}\n${paginaConFoto}`;
+  return `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+}
+
 const cabanas = [
 {
   nombre:"Cabaña Finca #17",
@@ -345,14 +357,40 @@ cabanas.forEach(cabana => {
   if (detalle) Object.assign(cabana, detalle);
 });
 window.onload = () => {
-  filtrar('jacuzzi');
+  // Si se llega con ?ver=17 (por ejemplo desde un enlace de WhatsApp),
+  // se muestra directamente esa cabaña.
+  const cabanaSolicitada = new URLSearchParams(location.search).get("ver");
+  if (cabanaSolicitada && /^\d+$/.test(cabanaSolicitada)) {
+    mostrarCabanas(cabanas.filter(c => c.id.toString() === cabanaSolicitada));
+  } else {
+    filtrar('jacuzzi');
+  }
 
   document.getElementById("buscador").addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
       ejecutarBusqueda();
     }
   });
+
+  contarVisita();
 };
+
+// Contador de visitas del catálogo mediante un servicio gratuito.
+// Si el servicio no responde, simplemente no se muestra el número.
+function contarVisita() {
+  const contador = document.getElementById("contador-visitas");
+  if (!contador) return;
+
+  fetch("https://abacus.jasoncameron.dev/hit/lascabanaspasto.com.co/catalogo")
+    .then(respuesta => (respuesta.ok ? respuesta.json() : Promise.reject()))
+    .then(datos => {
+      const total = datos && (datos.value ?? datos.count);
+      if (typeof total !== "number") return;
+      contador.textContent = `👁 ${total.toLocaleString("es-CO")} visitas`;
+      contador.hidden = false;
+    })
+    .catch(() => {});
+}
 
 function mostrarCabanas(lista){
   const contenedor = document.getElementById("resultados");
@@ -382,14 +420,14 @@ function mostrarCabanas(lista){
         ${fotos.length ? `<button type="button" class="btn-galeria" data-indice="${numeroDeOrden}" aria-label="Ver fotos de ${c.nombre}"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="8.5" cy="10" r="1.5"></circle><path d="m5 17 5-5 3.5 3 2-2 3 4"></path></svg></button>` : ""}
         
         <img src="${portada}" class="preview">
-        ${video ? `<video data-src="${video}" muted loop playsinline></video>` : ""}
+        ${video ? `<video data-src="${video}" muted loop playsinline webkit-playsinline preload="none" poster="${portada}"></video>` : ""}
 
         <div class="overlay">
           <h3>${c.nombre}</h3>
           <p>${c.precio}</p>
           <p>${c.info}</p>
-          <a href="https://wa.me/573014260352?text=Hola,%20quiero%20reservar%20${encodeURIComponent(c.nombre)}" target="_blank">
-            Reservar
+          <a class="btn-wa" href="${enlaceReservaWhatsApp(c)}" target="_blank" rel="noopener">
+            Continuar en WhatsApp
           </a>
         </div>
 
@@ -409,29 +447,52 @@ function filtrar(categoria){
   mostrarCabanas(filtradas);
 }
 function activarVideos(){
+  // En pantallas táctiles no hay "hover": el video se reproduce al tocar la tarjeta.
+  const hayHover = window.matchMedia("(hover: hover)").matches;
+
+  const cargar = (video) => {
+    // La ruta solo se asigna la primera vez, para no descargar todos los videos.
+    if (!video.dataset.loaded) {
+      video.src = video.dataset.src;
+      video.dataset.loaded = "true";
+      video.load();
+    }
+  };
+
+  const reproducir = (card, video) => {
+    cargar(video);
+    card.classList.add("reproduciendo");
+    video.play().catch(() => {
+      // El navegador reproducirá cuando tenga datos suficientes.
+    });
+  };
+
+  const detener = (card, video) => {
+    card.classList.remove("reproduciendo");
+    video.pause();
+    try {
+      video.currentTime = 0;
+    } catch (error) {
+      // Si aún no hay metadatos, no hay posición que reiniciar.
+    }
+  };
+
   document.querySelectorAll(".card").forEach(card => {
     const video = card.querySelector("video");
     if (!video) return;
 
-    card.addEventListener("mouseenter", () => {
-      // La ruta solo se asigna la primera vez que el usuario interactúa.
-      if (!video.dataset.loaded) {
-        video.src = video.dataset.src;
-        video.dataset.loaded = "true";
-        video.load();
-      }
+    if (hayHover) {
+      card.addEventListener("mouseenter", () => reproducir(card, video));
+      card.addEventListener("mouseleave", () => detener(card, video));
+    }
 
-      video.play().catch(() => {
-        // El navegador iniciará la reproducción cuando disponga de datos suficientes.
-      });
-    });
-
-    card.addEventListener("mouseleave", () => {
-      video.pause();
-      try {
-        video.currentTime = 0;
-      } catch (error) {
-        // Si el usuario sale antes de cargar metadatos, no hay posición que reiniciar.
+    // Toque en móvil/tablet: alterna reproducción sin estorbar a los enlaces ni a la galería.
+    card.addEventListener("click", (evento) => {
+      if (hayHover || evento.target.closest("a, .btn-galeria")) return;
+      if (card.classList.contains("reproduciendo")) {
+        detener(card, video);
+      } else {
+        reproducir(card, video);
       }
     });
   });
