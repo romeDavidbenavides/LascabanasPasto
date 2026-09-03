@@ -193,6 +193,7 @@ body{
   overflow:hidden;
   transition:.4s ease-in-out;
   height:350px;
+  cursor:pointer; /* iOS necesita esto para disparar el toque que reproduce el video */
   box-shadow:
   0 8px 25px rgba(0,0,0,.08);
 }

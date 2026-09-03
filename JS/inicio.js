@@ -115,6 +115,21 @@ if (carrusel) {
     carrusel.addEventListener('pointerup', terminarArrastre);
     carrusel.addEventListener('pointercancel', terminarArrastre);
 }
+// Refuerzo para que el video del footer se reproduzca en iPhone/Safari.
+(function reproducirVideoFooter() {
+    const video = document.querySelector('.footer-video');
+    if (!video) return;
+
+    const intentar = () => { const p = video.play(); if (p) p.catch(() => {}); };
+
+    intentar();
+    video.addEventListener('loadedmetadata', intentar);
+    video.addEventListener('canplay', intentar);
+    ['touchstart', 'click', 'scroll'].forEach((evento) => {
+        document.addEventListener(evento, intentar, { once: true, passive: true });
+    });
+})();
+
 // Efecto sutil en los botones destacados.
 document.querySelectorAll('.btn-magnetic').forEach((boton) => {
     boton.addEventListener('mousemove', (evento) => {

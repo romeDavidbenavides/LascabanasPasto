@@ -2,6 +2,21 @@ emailjs.init({
   publicKey: "GbECErPoD58910Qkk"
 });
 
+// Refuerzo para que el video de fondo se reproduzca en iPhone/Safari.
+(function reproducirVideoFondo() {
+  const video = document.getElementById("videoFondo");
+  if (!video) return;
+
+  const intentar = () => { const p = video.play(); if (p) p.catch(() => {}); };
+
+  intentar();
+  video.addEventListener("loadedmetadata", intentar);
+  video.addEventListener("canplay", intentar);
+  ["touchstart", "click", "scroll"].forEach((evento) => {
+    document.addEventListener(evento, intentar, { once: true, passive: true });
+  });
+})();
+
 document.getElementById("contact-form").addEventListener("submit", function(event){
   event.preventDefault();
 
