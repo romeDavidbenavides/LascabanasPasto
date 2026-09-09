@@ -480,21 +480,26 @@ function activarVideos(){
   // En pantallas táctiles no hay "hover": el video se reproduce al tocar la tarjeta.
   const hayHover = window.matchMedia("(hover: hover)").matches;
 
-  const cargar = (video) => {
-    // La ruta solo se asigna la primera vez, para no descargar todos los videos.
+  const reproducir = (card, video) => {
+    card.classList.add("reproduciendo");
+
+    // iOS: propiedades, no solo atributos.
+    video.muted = true;
+    video.playsInline = true;
+
+    // Asigna la ruta la primera vez (sin video.load(): en iOS ese load()
+    // "consume" el toque y el play() queda bloqueado).
     if (!video.dataset.loaded) {
+      video.preload = "auto";
       video.src = video.dataset.src;
       video.dataset.loaded = "true";
-      video.load();
     }
-  };
 
-  const reproducir = (card, video) => {
-    cargar(video);
-    card.classList.add("reproduciendo");
-    video.play().catch(() => {
-      // El navegador reproducirá cuando tenga datos suficientes.
-    });
+    // play() debe llamarse dentro del mismo toque; si aún no hay datos,
+    // se reintenta al primer frame disponible.
+    const go = () => { const p = video.play(); if (p) p.catch(() => {}); };
+    go();
+    video.addEventListener("loadeddata", go, { once: true });
   };
 
   const detener = (card, video) => {
