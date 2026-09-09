@@ -11,7 +11,8 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Las Cabañas Pasto">
     <title>Catálogo de Cabañas</title>
-    <link rel="stylesheet" href="../CSS/catalogo.css?v=4">
+    <link rel="stylesheet" href="../CSS/catalogo.css?v=18">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -39,15 +40,20 @@
 
   <!-- 🗂️ Categorías -->
   <div class="categorias">
-    <button onclick="filtrar('sencillas')">💰 Sencillas</button>
-    <button onclick="filtrar('romanticas')">❤️ Románticas</button>
-    <button onclick="filtrar('jacuzzi')">🛁 Jacuzzi</button>
-    <button onclick="filtrar('grupales')">👥 Grupales</button>
-    <button onclick="filtrar('premium')">⭐ Premium</button>
-    <button onclick="filtrar('deluxe')">✨ Deluxe</button>
-    <button onclick="filtrar('discapacitados')">♿ Discapacitados</button>
-    <button onclick="filtrar('bdsm')">🔗 BDSM</button>
-    <button onclick="mostrarCabanas(cabanas)">🏠 Todas</button>
+    <button data-categoria="sencillas" onclick="filtrar('sencillas')"><i class="fa-solid fa-coins"></i> Sencillas</button>
+    <button data-categoria="romanticas" onclick="filtrar('romanticas')"><i class="fa-solid fa-heart"></i> Románticas</button>
+    <button data-categoria="jacuzzi" onclick="filtrar('jacuzzi')"><i class="fa-solid fa-bath"></i> Jacuzzi</button>
+    <button data-categoria="grupales" onclick="filtrar('grupales')"><i class="fa-solid fa-users"></i> Grupales</button>
+    <button data-categoria="premium" onclick="filtrar('premium')"><i class="fa-solid fa-star"></i> Premium</button>
+    <button data-categoria="deluxe" onclick="filtrar('deluxe')"><i class="fa-solid fa-gem"></i> Deluxe</button>
+    <button data-categoria="discapacitados" onclick="filtrar('discapacitados')"><i class="fa-solid fa-wheelchair"></i> Discapacitados</button>
+    <button data-categoria="bdsm" onclick="filtrar('bdsm')"><i class="fa-solid fa-link"></i> BDSM</button>
+    <button data-categoria="todas" onclick="verTodas()"><i class="fa-solid fa-house"></i> Todas</button>
+  </div>
+
+  <!-- 🏡 Título -->
+  <div class="catalogo-titulo">
+    <h2>Nuestras Cabañas</h2>
   </div>
 
   <!-- 🏡 Resultados -->
@@ -58,6 +64,6 @@
 
 </div>
     
-<script src="../JS/catalogo.js?v=4"></script>
+<script src="../JS/catalogo.js?v=12"></script>
 </body>
 </html>

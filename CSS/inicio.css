@@ -7,12 +7,17 @@
   box-sizing: border-box;
 }
 
+html, body {
+  overflow-x: hidden; /* nada puede arrastrarse/moverse en horizontal */
+  max-width: 100%;
+}
+
 body {
   min-height: 100vh;
-  background: linear-gradient(90deg, #d8a7ae 0%, #f8f4f5 10%, #ffffff 25%, #ffffff 75%, #f8f4f5 90%, #d8a7ae 100%);
+  background: #f8f4f5;
   color: #3d3d3d;
   font-family: 'Poppins', Arial, sans-serif;
-  overflow-x: hidden;
+  position: relative;
 }
 
 /* ==========================
@@ -23,7 +28,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: linear-gradient(90deg, rgba(216, 167, 174, 0.72) 0%, rgba(248, 244, 245, 0.78) 10%, rgba(255, 255, 255, 0.74) 25%, rgba(255, 255, 255, 0.74) 75%, rgba(248, 244, 245, 0.78) 90%, rgba(216, 167, 174, 0.72) 100%);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(184, 0, 28, 0.12);
@@ -92,6 +97,14 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+/* Portada: imagen en PC, video (vertical) solo en celular. */
+.hero-video { display: none; }
+
+@media (max-width: 768px) {
+  .hero-foto { display: none; }
+  .hero-video { display: block; }
 }
 
 .overlay-hero {
@@ -255,6 +268,7 @@ body {
   padding: 60px 20px;
   max-width: 1200px;
   margin: 0 auto;
+  overflow-x: hidden; /* recorta las animaciones que entran desde los lados */
 }
 
 .reverse { flex-direction: row-reverse; }

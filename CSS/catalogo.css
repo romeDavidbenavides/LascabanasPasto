@@ -8,18 +8,13 @@
   box-sizing:border-box;
 }
 
+html, body{
+  overflow-x:hidden; /* si una tarjeta crece cerca del borde, no empuja la página */
+}
+
 body{
   min-height:100vh;
-  background:
-  linear-gradient(
-      90deg,
-      #d8a7ae 0%,
-      #f8f4f5 10%,
-      #ffffff 25%,
-      #ffffff 75%,
-      #f8f4f5 90%,
-      #d8a7ae 100%
-  );
+  background:#f8f4f5;
   font-family:'Poppins',sans-serif;
 }
 
@@ -32,7 +27,7 @@ body{
   position:sticky;
   top:0;
   z-index:1000;
-  background: linear-gradient(90deg, rgba(216, 167, 174, 0.72) 0%, rgba(248, 244, 245, 0.78) 10%, rgba(255, 255, 255, 0.74) 25%, rgba(255, 255, 255, 0.74) 75%, rgba(248, 244, 245, 0.78) 90%, rgba(216, 167, 174, 0.72) 100%);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter:blur(15px);
   -webkit-backdrop-filter:blur(15px);
   border-bottom:
@@ -75,7 +70,7 @@ body{
 }
 
 .nav a{
-  color:#3d3d3d;
+  color:#222;
   text-decoration:none;
   font-weight:600;
   letter-spacing:.5px;
@@ -153,21 +148,54 @@ body{
 }
 
 .categorias button{
-  padding:12px 18px;
-  border:none;
+  padding:11px 18px;
+  border:1.5px solid #b8001c;
   border-radius:50px;
-  background:#b8001c;
-  color:white;
+  background:#fff;
+  color:#222; /* texto negro */
   font-weight:600;
   cursor:pointer;
   transition:.3s;
 }
 
 .categorias button:hover{
-  background:#8a0015;
+  background:#fdecee;
   transform:translateY(-3px);
+}
+
+/* El ícono es de un solo color (rojo), independiente del texto. */
+.categorias button i{
+  margin-right:6px;
+  color:#b8001c;
+}
+
+/* Solo la categoría seleccionada queda en rojo sólido; ahí el texto
+   y el ícono pasan a blanco juntos. */
+.categorias button.activa{
+  background:#b8001c;
+  border-color:#b8001c;
+  color:#fff;
   box-shadow:
   0 10px 25px rgba(184,0,28,.25);
+}
+
+.categorias button.activa i{
+  color:#fff;
+}
+
+/* ==========================
+   TÍTULO DEL CATÁLOGO
+========================== */
+
+.catalogo-titulo{
+  text-align:center;
+  margin:6px 0 28px;
+}
+
+.catalogo-titulo h2{
+  font-size:1.9rem;
+  color:#3d3d3d;
+  margin-bottom:6px;
 }
 
 /* ==========================
@@ -186,31 +214,55 @@ body{
 ========================== */
 
 .card{
-  background:white;
-  border-radius:20px;
+  /* Cuánto crece el video en el despliegue. Se ajusta SOLO aquí (y en la
+     media query de celular). El panel blanco NO se escala, así que no
+     hay "anti-estiramientos" que tocar. */
+  --sx:1.12; /* PC: crecimiento en ancho */
+  --sy:1.22; /* PC: crecimiento en alto */
+
   text-align:center;
   position:relative;
-  overflow:hidden;
-  transition:.4s ease-in-out;
-  height:350px;
+  overflow:visible; /* deja que el video crecido se salga de la celda */
+  transition:.3s ease-in-out;
+  aspect-ratio:4/5; /* tamaño fijo: nunca empuja el layout ni infla la de al lado */
   cursor:pointer; /* iOS necesita esto para disparar el toque que reproduce el video */
-  box-shadow:
-  0 8px 25px rgba(0,0,0,.08);
 }
 
-.card:hover{
-  transform:
-  scale(1.07)
-  translateY(-10px);
-  z-index:10;
-  box-shadow:
-  0 15px 35px rgba(0,0,0,.20);
+/* Al tocar/hover: se agranda SOLO el video (.card-media). El panel de
+   abajo es una pieza aparte que no se escala. */
+.card:hover,
+.card.reproduciendo{
+  z-index:30;
 }
+
+/* La zona de foto/video: es lo único que se agranda en el despliegue. */
+.card-media{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  border-radius:20px;
+  background:#000;
+  transform-origin:center top; /* crece hacia abajo, no hacia arriba */
+  transition:transform .3s ease-in-out, box-shadow .3s ease-in-out;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.card:hover .card-media,
+.card.reproduciendo .card-media{
+  transform:scale(var(--sx), var(--sy));
+  box-shadow:0 20px 45px rgba(0,0,0,.28);
+}
+
+/* Las tarjetas de los bordes crecen hacia adentro, para no salirse de
+   la pantalla. En PC son 3 columnas. */
+.card:nth-child(3n+1) .card-media{ transform-origin:left top; }   /* primera columna: crece a la derecha */
+.card:nth-child(3n) .card-media{ transform-origin:right top; }    /* última columna: crece a la izquierda */
 
 /* ==========================
    INDICADOR NUMÉRICO
 ========================== */
 
+/* Vive en .card (no en .card-media), así que nunca se estira. */
 .badge-numero {
   position: absolute;
   top: 15px;
@@ -238,7 +290,6 @@ body{
   top:0;
   left:0;
   transition:.3s;
-  border-radius:20px; /* Asegura el redondeado interno */
 }
 
 .card video{
@@ -259,89 +310,114 @@ body{
    OVERLAY (Información desplegable al hacer hover)
 ========================== */
 
+/* Contenedor invisible: pieza APARTE del video, no se escala nunca.
+   Se ancla al borde inferior del video expandido y a su mismo ancho.
+   Adentro: comodidades sobre el video + ficha blanca abajo. */
 .overlay{
   position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  background: transparent;
-  padding:15px;
-  box-sizing:border-box;
+  bottom:calc(100% * (1 - var(--sy)));
+  left:50%;
+  transform:translateX(-50%); /* columna del medio: centrado como el video */
+  width:calc(100% * var(--sx)); /* mismo ancho que el video expandido */
+  max-height:0; /* cerrado: sin alto, no cuelga por debajo de la card */
+  overflow:hidden;
   display:flex;
   flex-direction:column;
-  justify-content:flex-end;
-  align-items:flex-start;
+  justify-content:flex-end; /* el contenido se apoya en el borde inferior */
   opacity:0;
-  transition:.3s ease-in-out;
-  border-radius:0 0 20px 20px;
+  pointer-events:none;
+  transition:opacity .25s ease-in-out;
   z-index:20;
 }
 
-.card:hover .overlay{
+.card:hover .overlay,
+.card.reproduciendo .overlay{
+  max-height:600px;
   opacity:1;
+  pointer-events:auto;
 }
 
-.overlay h3{
-  color:white;
-  font-size:16px;
-  margin-bottom:5px;
-  text-shadow:0 2px 5px rgba(0,0,0,.8);
+/* En los bordes, se alinea igual que el video (que crece hacia adentro). */
+.card:nth-child(3n+1) .overlay{ left:0; transform:none; }
+.card:nth-child(3n) .overlay{ left:auto; right:0; transform:none; }
+
+/* Comodidades: en columna, ENCIMA del video, texto blanco con sombra. */
+.comodidades{
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+  align-items:flex-start;
+  padding:0 14px 8px;
+  color:#fff;
+  font-size:11px;
+  line-height:1.5;
+  text-align:left;
+  text-shadow:0 1px 5px rgba(0,0,0,.95), 0 0 2px rgba(0,0,0,.8);
 }
 
-.overlay p{
-  color:#ddd;
-  font-size:13px;
-  margin-bottom:10px;
-  line-height:1.4;
+/* Ficha blanca: nombre, precio, botón de fotos y botón de WhatsApp. */
+.ficha{
+  width:100%;
+  box-sizing:border-box;
+  background:#fff;
+  padding:10px 12px;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  align-items:flex-start;
+  border-radius:0 0 18px 18px;
+  box-shadow:0 -4px 22px rgba(0,0,0,.18);
+}
+
+/* Fila superior de la ficha: nombre y botón de fotos en la misma línea. */
+.overlay-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  width:100%;
+}
+
+.ficha h3{
+  color:#2b2b2b;
+  font-size:15px;
+  line-height:1.15;
+  margin:0;
   text-align:left;
 }
 
-.overlay a{
-  background:#b8001c;
-  padding:8px 12px;
-  border-radius:8px;
-  color:white;
-  text-decoration:none;
+.ficha .precio-overlay{
+  color:#b8001c;
+  font-weight:700;
   font-size:13px;
-  font-weight:600;
-  transition:.3s;
+  margin:0;
+  text-align:left;
 }
 
-.overlay a:hover{
-  background:#8a0015;
-}
-
-/* Botón de contacto por WhatsApp dentro de cada tarjeta. */
-.overlay a.btn-wa{
+/* Botón de WhatsApp: compacto (no se estira a lo ancho) y centrado. */
+.btn-wa{
   display:inline-flex;
   align-items:center;
   gap:6px;
+  align-self:center;
+  margin-top:3px;
+  padding:7px 14px;
+  border-radius:8px;
   background:#25d366;
   color:#fff;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:600;
   box-shadow:0 4px 12px rgba(37,211,102,.35);
+  transition:background-color .3s;
 }
 
-.overlay a.btn-wa:hover{
+.btn-wa:hover{
   background:#1ebe5d;
 }
 
-/* ==========================
-   INFO DESPLEGABLE
-========================== */
-
-.info{
-  max-height:0;
-  overflow:hidden;
-  background:#111;
-  color:white;
-  font-size:14px;
-  padding:0 10px;
-  transition:.4s;
-}
-
-.card.activa .info{
-  max-height:200px;
-  padding:10px;
+.btn-wa svg{
+  flex-shrink:0;
 }
 
 /* ==========================
@@ -352,53 +428,53 @@ body{
   .resultados{
     grid-template-columns:repeat(2,1fr);
   }
+
+  /* Ahora son 2 columnas: la izquierda crece a la derecha, la derecha
+     crece a la izquierda. */
+  .card:nth-child(odd) .card-media{ transform-origin:left top; }
+  .card:nth-child(even) .card-media{ transform-origin:right top; }
+  .card:nth-child(odd) .overlay{ left:0; transform:none; }
+  .card:nth-child(even) .overlay{ left:auto; right:0; transform:none; }
 }
 
 @media(max-width:600px){
+  /* En celular las tarjetas son chicas: el despliegue crece más. */
+  .card{
+    --sx:1.45;
+    --sy:1.75;
+  }
+
+  /* Logo más grande que antes, pero en fila junto al menú (no apilado). */
+  .logo img{
+    height: 62px;
+  }
+
   /* Cuadrícula de 2 columnas */
   .resultados{
-    grid-template-columns:repeat(2,1fr); 
+    grid-template-columns:repeat(2,1fr);
     gap: 12px;
   }
 
-  /* 📱 Forzar redondeado estricto en tarjetas en móviles */
-  .card {
-    border-radius: 20px !important;
-  }
-
-  /* 📱 SUPER ZOOM RESPONSIVE TOTAL SIN RECORTE */
-  .card:hover {
-    transform: scale(1.35); 
-    z-index: 9999; 
-    overflow: visible; 
-    border-radius: 20px !important;
-    box-shadow: 0 20px 45px rgba(0,0,0,0.5);
-  }
-
-  /* Asegurar que la información se despliegue adaptándose perfectamente al tamaño reducido */
-  .overlay {
+  .ficha {
     padding: 10px;
   }
-  
-  .overlay h3 {
+
+  .ficha h3 {
     font-size: 13px;
   }
-  
-  .overlay p {
-    font-size: 10px;
-    margin-bottom: 6px;
+
+  .ficha .precio-overlay {
+    font-size: 11px;
   }
 
-  .overlay a {
-    padding: 5px 8px;
+  .comodidades {
     font-size: 10px;
+    padding: 0 10px 6px;
   }
 
-  /* Sube el botón de fotos para que no choque con "Continuar en WhatsApp". */
-  .btn-galeria {
-    bottom: 50px;
-    width: 34px;
-    height: 30px;
+  .btn-wa {
+    padding: 6px 12px;
+    font-size: 11px;
   }
 
   /* 🗂️ DISEÑO RESPONSIVE CORREGIDO PARA BOTONES DE CATEGORÍAS */
@@ -417,20 +493,22 @@ body{
     border-radius: 20px;
   }
 
-  /* Ajustes del Header y Buscador */
+  /* Ajustes del Header y Buscador: logo a la izquierda, menú a la
+     derecha, en la misma fila (no apilado), para aprovechar espacio. */
   .nav{
-    gap:10px;
+    gap:8px;
   }
 
   .nav a{
-    font-size:14px;
+    font-size:12.5px;
   }
 
   .header-container{
-    flex-direction:column;
-    gap:15px;
+    flex-direction:row;
+    justify-content:space-between;
+    padding:10px 16px;
   }
-  
+
   .buscador-contenedor {
     gap: 8px;
   }
@@ -446,21 +524,20 @@ body{
     border-radius: 12px;
   }
 }
-/* Botón de fotos y visor de galería. */
+/* Botón de fotos: ahora vive dentro del panel blanco, alineado con el
+   nombre de la cabaña (arriba a la derecha). */
 .btn-galeria {
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 0;
-  background: rgba(184, 0, 28, 0.9);
+  background: #b8001c;
   color: white;
-  font-weight: 700;
-  font-size: 16px;
-  width: 40px;
-  height: 36px;
-  border-radius: 10px;
-  z-index: 25;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  width: 38px;
+  height: 32px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(184,0,28,0.3);
   cursor: pointer;
 }
 
@@ -531,8 +608,8 @@ body{
   opacity: 1;
 }
 .btn-galeria svg {
-  width: 20px;
-  height: 20px;
+  width: 19px;
+  height: 19px;
   fill: none;
   stroke: white;
   stroke-width: 2;

@@ -333,7 +333,7 @@ const detallesPorCabana = {
   9: { nombre: 'Cabaña Sencilla #9', precio: '80.000 COP', info: serviciosSencilla },
   10: { nombre: 'Cabaña Sencilla #10', precio: '80.000 COP', info: serviciosSencilla },
   11: { nombre: 'Cabaña Sencilla #11', precio: '80.000 COP', info: serviciosSencilla },
-  12: { nombre: 'Cabaña Neón #12', precio: '240.000 COP', info: `🛋️ Sala de estar<br>🔊 Equipo de sonido<br>🛁 Jacuzzi<br>🛏️ 2 camas dobles<br>🚿 2 baños privados<br>🍸 Mini bar<br>👥 Máximo 6 personas` },
+  12: { nombre: 'Cabaña Neón #12', precio: '300.000 COP', info: `🛋️ Sala de estar<br>🔊 Equipo de sonido<br>🛁 Jacuzzi<br>🛏️ 2 camas dobles<br>🚿 2 baños privados<br>🍸 Mini bar<br>👥 Máximo 6 personas` },
   14: { nombre: 'Cabaña Deluxe #14', precio: '140.000 COP', info: `🛁 Jacuzzi<br>🛋️ Sillón del amor<br>🛏️ Cama doble<br>🚿 Ducha<br>📺 TV<br>🍸 Mini bar<br>🛋️ Sala<br>🚗 Parqueadero` },
   15: { nombre: 'Cabaña Sencilla Romántica #15', precio: '80.000 COP', info: serviciosSencilla },
   16: { nombre: 'Cabaña Deluxe #16', precio: '140.000 COP', info: `🛁 Jacuzzi<br>🛋️ Sillón del amor<br>🛏️ Cama doble<br>🚿 Ducha<br>📺 TV<br>🍸 Mini bar<br>🛋️ Sala<br>🚗 Parqueadero` },
@@ -415,24 +415,27 @@ function mostrarCabanas(lista){
 
     contenedor.innerHTML += `
       <div class="card">
-        <!-- El número ahora aparece completamente limpio -->
+        <!-- Fuera de .card-media para que NO se estire cuando el video se agranda -->
         <div class="badge-numero">${numeroDeOrden}</div>
-        ${fotos.length ? `<button type="button" class="btn-galeria" data-indice="${numeroDeOrden}" aria-label="Ver fotos de ${c.nombre}"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="8.5" cy="10" r="1.5"></circle><path d="m5 17 5-5 3.5 3 2-2 3 4"></path></svg></button>` : ""}
-        
-        <img src="${portada}" class="preview">
-        ${video ? `<video data-src="${video}" muted loop playsinline webkit-playsinline preload="none" poster="${portada}"></video>` : ""}
 
-        <div class="overlay">
-          <h3>${c.nombre}</h3>
-          <p>${c.precio}</p>
-          <p>${c.info}</p>
-          <a class="btn-wa" href="${enlaceReservaWhatsApp(c)}" target="_blank" rel="noopener">
-            Continuar en WhatsApp
-          </a>
+        <div class="card-media">
+          <img src="${portada}" class="preview">
+          ${video ? `<video data-src="${video}" muted loop playsinline webkit-playsinline preload="none" poster="${portada}"></video>` : ""}
         </div>
 
-        <div class="info">
-          ${c.info}
+        <div class="overlay">
+          <div class="comodidades">${listaComodidades(c.info)}</div>
+          <div class="ficha">
+            <div class="overlay-top">
+              <h3>${c.nombre}</h3>
+              ${fotos.length ? `<button type="button" class="btn-galeria" data-indice="${numeroDeOrden}" aria-label="Ver fotos de ${c.nombre}"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="8.5" cy="10" r="1.5"></circle><path d="m5 17 5-5 3.5 3 2-2 3 4"></path></svg></button>` : ""}
+            </div>
+            <p class="precio-overlay">${c.precio}</p>
+            <a class="btn-wa" href="${enlaceReservaWhatsApp(c)}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5.1-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-.7-.3-1.4-.6-2-1.2-.5-.5-.8-1-1.1-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.1-.3.2-.4 0-.1 0-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4 0-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.4c.1.2 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.6.2 1.1.1 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1z"/></svg>
+              Continuar en WhatsApp
+            </a>
+          </div>
         </div>
       </div>
     `;
@@ -442,9 +445,36 @@ function mostrarCabanas(lista){
   activarGaleria();
 }
 
+// Convierte la lista de comodidades ("🛀 Jacuzzi<br>🛌 Cama<br>...")
+// en chips pequeños que se acomodan en fila dentro del panel.
+// Lista de comodidades en columna, una por línea (va encima del video).
+function listaComodidades(infoHtml){
+  return infoHtml
+    .split("<br>")
+    .map(item => item.replace(/<[^>]*>/g, "").trim())
+    .filter(Boolean)
+    .map(item => `<span>${item}</span>`)
+    .join("");
+}
+
 function filtrar(categoria){
   const filtradas = cabanas.filter(c => c.categorias.includes(categoria));
   mostrarCabanas(filtradas);
+  marcarCategoriaActiva(categoria);
+}
+
+// Resalta en rojo el botón de categoría que está activo; los demás
+// quedan blancos. Solo cambia el estilo, el filtrado sigue igual.
+function marcarCategoriaActiva(categoria){
+  document.querySelectorAll(".categorias button[data-categoria]").forEach(boton => {
+    boton.classList.toggle("activa", boton.dataset.categoria === categoria);
+  });
+}
+
+// Botón "Todas": muestra el catálogo completo y lo marca como activo.
+function verTodas(){
+  mostrarCabanas(cabanas);
+  marcarCategoriaActiva("todas");
 }
 function activarVideos(){
   // En pantallas táctiles no hay "hover": el video se reproduce al tocar la tarjeta.
@@ -492,6 +522,11 @@ function activarVideos(){
       if (card.classList.contains("reproduciendo")) {
         detener(card, video);
       } else {
+        // Solo una tarjeta abierta a la vez: se cierran las demás antes de abrir esta.
+        document.querySelectorAll(".card.reproduciendo").forEach(otra => {
+          const otroVideo = otra.querySelector("video");
+          if (otra !== card && otroVideo) detener(otra, otroVideo);
+        });
         reproducir(card, video);
       }
     });
@@ -553,6 +588,7 @@ function abrirGaleria(fotos, nombre){
   document.body.style.overflow = 'hidden';
 }
 function ejecutarBusqueda() {
+  marcarCategoriaActiva(null); // una búsqueda de texto no corresponde a una sola categoría
   const terminoOriginal = document.getElementById("buscador").value.trim();
   const normalizar = (texto) => texto
     .toLowerCase()

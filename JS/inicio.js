@@ -116,17 +116,24 @@ if (carrusel) {
     carrusel.addEventListener('pointercancel', terminarArrastre);
 }
 // Refuerzo para que el video del footer se reproduzca en iPhone/Safari.
-(function reproducirVideoFooter() {
-    const video = document.querySelector('.footer-video');
-    if (!video) return;
+(function reproducirVideosAutoplay() {
+    const videos = document.querySelectorAll('video[autoplay]'); // hero + footer
+    if (!videos.length) return;
 
-    const intentar = () => { const p = video.play(); if (p) p.catch(() => {}); };
+    const intentarTodos = () => videos.forEach((video) => {
+        // Salta el que esté oculto (p.ej. el video del hero en PC).
+        if (getComputedStyle(video).display === 'none') return;
+        const p = video.play();
+        if (p) p.catch(() => {});
+    });
 
-    intentar();
-    video.addEventListener('loadedmetadata', intentar);
-    video.addEventListener('canplay', intentar);
+    intentarTodos();
+    videos.forEach((video) => {
+        video.addEventListener('loadedmetadata', intentarTodos);
+        video.addEventListener('canplay', intentarTodos);
+    });
     ['touchstart', 'click', 'scroll'].forEach((evento) => {
-        document.addEventListener(evento, intentar, { once: true, passive: true });
+        document.addEventListener(evento, intentarTodos, { once: true, passive: true });
     });
 })();
 
