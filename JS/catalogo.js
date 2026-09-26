@@ -322,34 +322,34 @@ const serviciosSencilla = `
 `;
 
 const detallesPorCabana = {
-  1: { nombre: 'Cabaña Sencilla #1', precio: '80.000 COP', info: serviciosSencilla },
-  2: { nombre: 'Cabaña Sencilla #2', precio: '80.000 COP', info: serviciosSencilla },
-  3: { nombre: 'Cabaña Sencilla #3', precio: '80.000 COP', info: serviciosSencilla },
-  4: { nombre: 'Cabaña Sencilla #4', precio: '80.000 COP', info: serviciosSencilla },
-  5: { nombre: 'Cabaña #5', precio: '130.000 COP', info: `🛁 Jacuzzi<br>🛏️ Cama doble<br>🛋️ Sala<br>💃 Pole dance<br>🍸 Mini bar<br>🚗 Parqueadero<br>🚿 Ducha` },
-  6: { nombre: 'Cabaña Premium #6', precio: '200.000 COP', info: `🛋️ Sillón del amor<br>🛏️ Cama doble<br>🚿 Ducha<br>🛁 Jacuzzi<br>🛋️ Sala<br>🍸 Mini bar<br>🚗 Parqueadero<br>👥 Máximo 3 personas` },
-  7: { nombre: 'Cabaña Sencilla #7', precio: '80.000 COP', info: serviciosSencilla },
-  8: { nombre: 'Cabaña Sencilla #8', precio: '80.000 COP', info: serviciosSencilla },
-  9: { nombre: 'Cabaña Sencilla #9', precio: '80.000 COP', info: serviciosSencilla },
-  10: { nombre: 'Cabaña Sencilla #10', precio: '80.000 COP', info: serviciosSencilla },
-  11: { nombre: 'Cabaña Sencilla #11', precio: '80.000 COP', info: serviciosSencilla },
-  12: { nombre: 'Cabaña Neón #12', precio: '300.000 COP', info: `🛋️ Sala de estar<br>🔊 Equipo de sonido<br>🛁 Jacuzzi<br>🛏️ 2 camas dobles<br>🚿 2 baños privados<br>🍸 Mini bar<br>👥 Máximo 6 personas` },
-  14: { nombre: 'Cabaña Deluxe #14', precio: '140.000 COP', info: `🛁 Jacuzzi<br>🛋️ Sillón del amor<br>🛏️ Cama doble<br>🚿 Ducha<br>📺 TV<br>🍸 Mini bar<br>🛋️ Sala<br>🚗 Parqueadero` },
-  15: { nombre: 'Cabaña Sencilla Romántica #15', precio: '80.000 COP', info: serviciosSencilla },
-  16: { nombre: 'Cabaña Deluxe #16', precio: '140.000 COP', info: `🛁 Jacuzzi<br>🛋️ Sillón del amor<br>🛏️ Cama doble<br>🚿 Ducha<br>📺 TV<br>🍸 Mini bar<br>🛋️ Sala<br>🚗 Parqueadero` },
-  17: { nombre: 'Cabaña Finca #17', precio: '120.000 COP', info: `🛁 Jacuzzi<br>🛋️ Sillón del amor<br>🛏️ Cama doble<br>🚿 Ducha<br>📺 TV<br>🛋️ Sala<br>🍸 Mini bar<br>🚗 Parqueadero` },
-  18: { nombre: 'Cabaña #18', precio: '160.000 COP', info: `🛏️ Cama doble<br>📺 TV<br>🚿 Ducha<br>♿ Baño adaptado<br>🚗 Parqueadero` },
-  19: { nombre: 'Tropical #19', precio: '350.000 COP', info: `🛁 Jacuzzi<br>🔊 Equipo de sonido<br>🪩 Discoteca<br>🛏️ 2 camas dobles<br>🍸 Barra tipo bar<br>🚗 Parqueadero` },
-  20: { nombre: 'BDSM Room #20', precio: '90.000 COP', info: `💋 Juguetes<br>🛏️ Cama doble<br>🛋️ Sillón del amor<br>🪢 Arnés y columpio<br>📺 TV<br>❌ X del amor<br>🚗 Parqueadero` },
-  21: { nombre: 'BDSM Room #21', precio: '140.000 COP', info: `💋 Juguetes<br>🛏️ Cama doble<br>🛋️ Sillón del amor<br>🪢 Arnés y columpio<br>📺 TV<br>❌ X del amor<br>🚗 Parqueadero<br>🛁 Jacuzzi` },
-  22: { nombre: 'Presidencial #22', precio: '140.000 COP', info: `🛁 Jacuzzi<br>🛏️ Cama circular<br>📺 TV<br>🍸 Mini bar<br>🚗 Parqueadero` },
-  23: { nombre: 'Cabaña Sencilla #23', precio: '80.000 COP', info: serviciosSencilla },
-  24: { nombre: 'Cabaña Sencilla #24', precio: '80.000 COP', info: serviciosSencilla },
-  25: { nombre: 'Cabaña Sencilla #25', precio: '80.000 COP', info: serviciosSencilla },
-  26: { nombre: 'Cabaña Sencilla #26', precio: '80.000 COP', info: serviciosSencilla },
-  27: { nombre: 'Alaska #27', precio: '420.000 COP', info: `🛁 Jacuzzi<br>🛋️ Sillón del amor<br>🪩 Discoteca<br>🏠 3 cuartos<br>🚗 Parqueadero<br>📺 TV<br>🍸 Barra tipo bar<br>👥 Máximo 8 personas` },
-  28: { nombre: 'Cabaña Finca Sencilla #28', precio: '110.000 COP', info: `🛁 Jacuzzi<br>📺 TV<br>🛏️ Cama doble<br>🛋️ Sillón del amor<br>🚗 Parqueadero` },
-  29: { nombre: 'Cabaña Sencilla #29', precio: '80.000 COP', info: serviciosSencilla }
+  1: { nombre: 'Cabaña Sencilla 1', precio: '80.000 COP', info: serviciosSencilla },
+  2: { nombre: 'Cabaña Sencilla 2', precio: '80.000 COP', info: serviciosSencilla },
+  3: { nombre: 'Cabaña Sencilla 3', precio: '80.000 COP', info: serviciosSencilla },
+  4: { nombre: 'Cabaña Sencilla 4', precio: '80.000 COP', info: serviciosSencilla },
+  5: { nombre: 'Cabaña 5 Premium', precio: '130.000 COP', info: `🛁 Jacuzzi<br>🛏️ Cama doble<br>🛋️ Sala<br>💃 Pole dance<br>🍸 Mini bar<br>🚗 Parqueadero<br>🚿 Ducha` },
+  6: { nombre: 'Cabaña Premium 6', precio: '200.000 COP', info: `🛋️ Sillón del amor<br>🛏️ Cama doble<br>🚿 Ducha<br>🛁 Jacuzzi<br>🛋️ Sala<br>🍸 Mini bar<br>🚗 Parqueadero<br>👥 Máximo 3 personas` },
+  7: { nombre: 'Cabaña Sencilla 7', precio: '80.000 COP', info: serviciosSencilla },
+  8: { nombre: 'Cabaña Sencilla 8', precio: '80.000 COP', info: serviciosSencilla },
+  9: { nombre: 'Cabaña Sencilla 9', precio: '80.000 COP', info: serviciosSencilla },
+  10: { nombre: 'Cabaña Sencilla 10', precio: '80.000 COP', info: serviciosSencilla },
+  11: { nombre: 'Cabaña Sencilla 11', precio: '80.000 COP', info: serviciosSencilla },
+  12: { nombre: 'Cabaña Neón Grupal 12', precio: '300.000 COP', info: `🛋️ Sala de estar<br>🔊 Equipo de sonido<br>🛁 Jacuzzi<br>🛏️ 2 camas dobles<br>🚿 2 baños privados<br>🍸 Mini bar<br>👥 Máximo 6 personas` },
+  14: { nombre: 'Cabaña Deluxe 14', precio: '140.000 COP', info: `🛁 Jacuzzi<br>🛋️ Sillón del amor<br>🛏️ Cama doble<br>🚿 Ducha<br>📺 TV<br>🍸 Mini bar<br>🛋️ Sala<br>🚗 Parqueadero` },
+  15: { nombre: 'Cabaña Sencilla Romántica 15', precio: '80.000 COP', info: serviciosSencilla },
+  16: { nombre: 'Cabaña Deluxe 16', precio: '140.000 COP', info: `🛁 Jacuzzi<br>🛋️ Sillón del amor<br>🛏️ Cama doble<br>🚿 Ducha<br>📺 TV<br>🍸 Mini bar<br>🛋️ Sala<br>🚗 Parqueadero` },
+  17: { nombre: 'Cabaña Finca 17', precio: '120.000 COP', info: `🛁 Jacuzzi<br>🛋️ Sillón del amor<br>🛏️ Cama doble<br>🚿 Ducha<br>📺 TV<br>🛋️ Sala<br>🍸 Mini bar<br>🚗 Parqueadero` },
+  18: { nombre: 'Cabaña 18', precio: '160.000 COP', info: `🛏️ Cama doble<br>📺 TV<br>🚿 Ducha<br>♿ Baño adaptado<br>🚗 Parqueadero` },
+  19: { nombre: 'Tropical Grupal 19', precio: '350.000 COP', info: `🛁 Jacuzzi<br>🔊 Equipo de sonido<br>🪩 Discoteca<br>🛏️ 2 camas dobles<br>🍸 Barra tipo bar<br>🚗 Parqueadero` },
+  20: { nombre: 'BDSM Room 20', precio: '90.000 COP', info: `💋 Juguetes<br>🛏️ Cama doble<br>🛋️ Sillón del amor<br>🪢 Arnés y columpio<br>📺 TV<br>❌ X del amor<br>🚗 Parqueadero` },
+  21: { nombre: 'BDSM Room 21', precio: '140.000 COP', info: `💋 Juguetes<br>🛏️ Cama doble<br>🛋️ Sillón del amor<br>🪢 Arnés y columpio<br>📺 TV<br>❌ X del amor<br>🚗 Parqueadero<br>🛁 Jacuzzi` },
+  22: { nombre: 'Presidencial 22', precio: '140.000 COP', info: `🛁 Jacuzzi<br>🛏️ Cama circular<br>📺 TV<br>🍸 Mini bar<br>🚗 Parqueadero` },
+  23: { nombre: 'Cabaña Sencilla 23', precio: '80.000 COP', info: serviciosSencilla },
+  24: { nombre: 'Cabaña Sencilla 24', precio: '80.000 COP', info: serviciosSencilla },
+  25: { nombre: 'Cabaña Sencilla 25', precio: '80.000 COP', info: serviciosSencilla },
+  26: { nombre: 'Cabaña Sencilla 26', precio: '80.000 COP', info: serviciosSencilla },
+  27: { nombre: 'Alaska Grupal 27', precio: '420.000 COP', info: `🛁 Jacuzzi<br>🛋️ Sillón del amor<br>🪩 Discoteca<br>🏠 3 cuartos<br>🚗 Parqueadero<br>📺 TV<br>🍸 Barra tipo bar<br>👥 Máximo 8 personas` },
+  28: { nombre: 'Finca Sencilla con Jacuzzi 28', precio: '110.000 COP', info: `🛁 Jacuzzi<br>📺 TV<br>🛏️ Cama doble<br>🛋️ Sillón del amor<br>🚗 Parqueadero` },
+  29: { nombre: 'Cabaña Sencilla 29', precio: '80.000 COP', info: serviciosSencilla }
 };
 
 cabanas.forEach(cabana => {
@@ -430,11 +430,13 @@ function mostrarCabanas(lista){
               <h3>${c.nombre}</h3>
               ${fotos.length ? `<button type="button" class="btn-galeria" data-indice="${numeroDeOrden}" aria-label="Ver fotos de ${c.nombre}"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="8.5" cy="10" r="1.5"></circle><path d="m5 17 5-5 3.5 3 2-2 3 4"></path></svg></button>` : ""}
             </div>
-            <p class="precio-overlay">${c.precio}</p>
-            <a class="btn-wa" href="${enlaceReservaWhatsApp(c)}" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5.1-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-.7-.3-1.4-.6-2-1.2-.5-.5-.8-1-1.1-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.1-.3.2-.4 0-.1 0-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4 0-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.4c.1.2 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.6.2 1.1.1 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1z"/></svg>
-              Continuar en WhatsApp
-            </a>
+            <div class="overlay-bottom">
+              <p class="precio-overlay">${c.precio.replace(/\s*COP$/i, "")}</p>
+              <a class="btn-wa" href="${enlaceReservaWhatsApp(c)}" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5.1-1.3A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 20zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-.7-.3-1.4-.6-2-1.2-.5-.5-.8-1-1.1-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.1-.3.2-.4 0-.1 0-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4 0-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.4c.1.2 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.6.2 1.1.1 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1z"/></svg>
+                Continuar en WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       </div>

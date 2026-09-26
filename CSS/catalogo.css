@@ -379,28 +379,40 @@ body{
 }
 
 .ficha h3{
-  color:#2b2b2b;
-  font-size:15px;
+  font-family:'Playfair Display', 'Poppins', serif;
+  font-weight:800;
+  color:#111;
+  font-size:18px;
   line-height:1.15;
   margin:0;
   text-align:left;
 }
 
+/* Fila inferior de la ficha: precio a la izquierda, botón de WhatsApp
+   pegado a la derecha (en la misma línea, para ocupar menos alto). */
+.overlay-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  width:100%;
+  margin-top:2px;
+}
+
 .ficha .precio-overlay{
   color:#b8001c;
   font-weight:700;
-  font-size:13px;
+  font-size:15px;
   margin:0;
   text-align:left;
 }
 
-/* Botón de WhatsApp: compacto (no se estira a lo ancho) y centrado. */
+/* Botón de WhatsApp: compacto (no se estira a lo ancho), pegado a la derecha. */
 .btn-wa{
   display:inline-flex;
   align-items:center;
   gap:6px;
-  align-self:center;
-  margin-top:3px;
+  flex-shrink:0;
   padding:7px 14px;
   border-radius:8px;
   background:#25d366;
@@ -460,11 +472,11 @@ body{
   }
 
   .ficha h3 {
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .ficha .precio-overlay {
-    font-size: 11px;
+    font-size: 13px;
   }
 
   .comodidades {
