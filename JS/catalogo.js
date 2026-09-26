@@ -512,7 +512,9 @@ function activarVideos(){
     const go = () => {
       const p = video.play();
       if (p) p.catch((error) => {
-        if (yaAviso) return;
+        // AbortError: normal al cambiar rápido de una tarjeta a otra
+        // (se pausa la anterior mientras esta aún cargaba). No es un error real.
+        if (error.name === "AbortError" || yaAviso) return;
         yaAviso = true;
         avisar("No se pudo reproducir: " + error.name + " — " + error.message);
       });
